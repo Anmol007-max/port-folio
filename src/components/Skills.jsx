@@ -8,31 +8,31 @@ const skillCategories = [
     title: 'Languages',
     icon: <HiCodeBracket />,
     skills: ['Python', 'Java', 'C++'],
-    span: false,
+    span: 1,
   },
   {
     title: 'AI / ML',
     icon: <HiCpuChip />,
     skills: ['Generative AI', 'Prompt Engineering', 'LLMs', 'NLP', 'Emotion Detection', 'Google Gen AI Studio'],
-    span: true,
+    span: 2,
   },
   {
     title: 'Web & Frameworks',
     icon: <HiGlobeAlt />,
     skills: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Express.js', 'FastAPI'],
-    span: true,
+    span: 3,
   },
   {
     title: 'Tools & Libraries',
     icon: <HiWrenchScrewdriver />,
     skills: ['D3.js', 'Zustand', 'Monaco Editor', 'Git', 'GitHub', 'VS Code', 'IntelliJ IDEA'],
-    span: false,
+    span: 2,
   },
   {
     title: 'CS Fundamentals',
     icon: <HiAcademicCap />,
     skills: ['Data Structures', 'Algorithms', 'OOP', 'System Design', 'DBMS', 'Tokenization'],
-    span: false,
+    span: 1,
   },
 ];
 
@@ -78,7 +78,7 @@ const Skills = () => {
           {skillCategories.map((cat, i) => (
             <motion.div
               key={cat.title}
-              className={`skill-card glass-card ${cat.span ? 'span-2' : ''}`}
+              className={`skill-card glass-card ${cat.span > 1 ? `span-${cat.span}` : ''}`}
               custom={i}
               variants={cardVariants}
               initial="hidden"

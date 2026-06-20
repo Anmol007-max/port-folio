@@ -875,6 +875,10 @@ button {
   grid-column: span 2;
 }
 
+.skill-card.span-3 {
+  grid-column: span 3;
+}
+
 .skill-card-icon {
   width: 48px;
   height: 48px;
@@ -1356,6 +1360,9 @@ button {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .skill-card.span-3 {
+    grid-column: span 2;
+  }
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1371,8 +1378,9 @@ button {
   .skills-grid {
     grid-template-columns: 1fr;
   }
-  .skill-card.span-2 {
-    grid-column: span 1;
+  .skill-card.span-2,
+  .skill-card.span-3 {
+    grid-column: 1 / -1;
   }
   .project-card {
     grid-template-columns: 1fr;
