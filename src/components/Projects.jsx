@@ -27,7 +27,7 @@ const projects = [
       'Designed empathetic conversational flows that adapt responses based on detected emotional state, improving contextual relevance.',
       'Applied text preprocessing, tokenization, and sentiment analysis pipelines to ensure accurate and safe user interactions.',
     ],
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Anmol007-max/Ai-Based-Mental-Health-Chatbot-With-Emotion-Detection',
   },
   {
     number: '03',
@@ -39,7 +39,7 @@ const projects = [
       'Developed a PromptTester module to benchmark and compare prompt formats across multiple LLM input scenarios, enabling data-driven prompt optimization.',
       'Maintained versioned prompt datasets across iterative test cycles, reducing redundant token usage and improving LLM inference efficiency.',
     ],
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Anmol007-max/token-optimizer',
   },
 ];
 
