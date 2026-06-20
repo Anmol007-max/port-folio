@@ -13,7 +13,7 @@ function App() {
     <>
       <div className="particles-bg">
         <Particles
-          particleColors={['#1a1a1a', '#2d2d2d', '#404040', '#555555']}
+          particleColors={['#2d6a4f', '#1b7a78', '#1e3a5f', '#c4593a']}
           particleCount={250}
           particleSpread={15}
           speed={0.05}

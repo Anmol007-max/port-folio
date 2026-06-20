@@ -48,15 +48,31 @@ const Contact = () => {
   };
 
   return (
-    <section className="section" id="contact" ref={ref}>
+    <section className="section" id="contact" ref={ref} style={{ position: 'relative' }}>
+      {/* Decorative background blob */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '10%',
+          right: '5%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(30,58,95,0.04), transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(80px)',
+          pointerEvents: 'none'
+        }}
+      />
+
       <div className="container">
         <SectionHeading number="05" title="Get in Touch" />
 
         <motion.div
-          className="contact-wrapper"
+          className="contact-wrapper glass-card"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ padding: '4rem' }}
         >
           <div className="contact-grid">
             <div className="contact-info">
@@ -78,25 +94,34 @@ const Contact = () => {
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               </motion.p>
 
-              {contactItems.map((item, i) => (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  target={item.href?.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="contact-item"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-                  style={{ cursor: item.href ? 'pointer' : 'default' }}
-                >
-                  <div className="contact-item-icon">{item.icon}</div>
-                  <div>
-                    <div className="contact-item-label">{item.label}</div>
-                    <div className="contact-item-value">{item.value}</div>
-                  </div>
-                </motion.a>
-              ))}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
+                {contactItems.map((item, i) => (
+                  <motion.a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href?.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="contact-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
+                    style={{ 
+                      cursor: item.href ? 'pointer' : 'default',
+                      background: 'rgba(255,255,255,0.6)',
+                      border: '1px solid rgba(255,255,255,0.8)',
+                      padding: '1.2rem',
+                      borderRadius: '16px'
+                    }}
+                    whileHover={item.href ? { x: 5, backgroundColor: 'rgba(255,255,255,0.9)' } : {}}
+                  >
+                    <div className="contact-item-icon">{item.icon}</div>
+                    <div>
+                      <div className="contact-item-label">{item.label}</div>
+                      <div className="contact-item-value">{item.value}</div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
             </div>
 
             <motion.form
@@ -104,7 +129,8 @@ const Contact = () => {
               onSubmit={handleSubmit}
               initial={{ opacity: 0, x: 40 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.7 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ background: 'rgba(255,255,255,0.4)', padding: '2.5rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.5)' }}
             >
               <div className="form-group">
                 <label className="form-label" htmlFor="name">Your Name</label>
@@ -117,6 +143,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(0,0,0,0.05)' }}
                 />
               </div>
               <div className="form-group">
@@ -130,9 +157,10 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(0,0,0,0.05)' }}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group" style={{ marginBottom: '1rem' }}>
                 <label className="form-label" htmlFor="message">Message</label>
                 <textarea
                   className="form-textarea"
@@ -142,6 +170,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(0,0,0,0.05)' }}
                 />
               </div>
               <MagneticButton className="btn-gradient" type="submit" style={{ width: '100%', justifyContent: 'center' }}>

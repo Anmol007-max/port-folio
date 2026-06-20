@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { HiArrowUpRight, HiLink } from 'react-icons/hi2';
+import { HiArrowUpRight, HiLink, HiFolder } from 'react-icons/hi2';
 import SectionHeading from './SectionHeading';
 
 const projects = [
@@ -44,10 +44,11 @@ const projects = [
 ];
 
 const projectVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 60, scale: 0.98 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       duration: 0.8,
       delay: i * 0.15,
@@ -61,7 +62,22 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="section" id="projects" ref={ref}>
+    <section className="section" id="projects" ref={ref} style={{ position: 'relative' }}>
+      {/* Decorative background blob */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '30%',
+          left: '0',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(196,89,58,0.03), transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(80px)',
+          pointerEvents: 'none'
+        }}
+      />
+
       <div className="container">
         <SectionHeading number="03" title="Featured Projects" />
 
@@ -69,14 +85,17 @@ const Projects = () => {
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              className="project-card"
+              className="project-card glass-card"
               custom={i}
               variants={projectVariants}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -8, scale: 1.01 }}
             >
-              <div className="project-number">{project.number}</div>
+              <div className="project-number">
+                <HiFolder style={{ opacity: 0.5, marginRight: '1rem', color: 'var(--violet)' }} />
+                {project.number}
+              </div>
 
               <div className="project-content">
                 <div className="project-header">
@@ -86,13 +105,13 @@ const Projects = () => {
 
                 <div className="project-tech">
                   {project.tech.map((t) => (
-                    <motion.span
+                    <span
                       key={t}
                       className="skill-pill"
-                      whileHover={{ scale: 1.05 }}
+                      style={{ padding: '0.2rem 0.6rem', fontSize: '0.75rem' }}
                     >
                       {t}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
 
@@ -112,7 +131,7 @@ const Projects = () => {
                 <div className="project-links">
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                      <HiLink size={16} />
+                      <HiLink size={18} />
                       Live Demo
                       <HiArrowUpRight size={14} />
                     </a>

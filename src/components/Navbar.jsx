@@ -65,16 +65,27 @@ const Navbar = () => {
           </a>
 
           <div className="nav-links">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, item.href)}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`nav-link ${isActive ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  style={{ position: 'relative' }}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-pill"
+                      className="nav-pill"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="nav-link-text">{item.label}</span>
+                </a>
+              );
+            })}
             <a
               href="#contact"
               className="btn-gradient nav-resume-btn"

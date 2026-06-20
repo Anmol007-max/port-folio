@@ -1,11 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import SectionHeading from './SectionHeading';
+import { HiAcademicCap } from 'react-icons/hi2';
 
 const education = [
   {
     degree: 'B.Tech — Computer Science Engineering (AI)',
-    school: 'Galgotias College of Engineering and Technology, Greater Noida',
+    school: 'Galgotias College of Engineering and Technology',
     university: 'AKTU',
     date: 'Sep 2024 — Jun 2028',
     coursework: 'Data Structures & Algorithms, Machine Learning, Neural Networks, OOP, DBMS, Operating Systems',
@@ -17,19 +18,34 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="section" id="about" ref={ref}>
+    <section className="section" id="about" ref={ref} style={{ position: 'relative' }}>
+      {/* Decorative background blob */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '20%',
+          left: '-10%',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(45,106,79,0.05), transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(60px)',
+          pointerEvents: 'none'
+        }}
+      />
+      
       <div className="container">
         <SectionHeading number="01" title="About Me" />
 
         <div className="about-content">
           <motion.div
             className="about-text"
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <p>
-              I'm a <span className="about-highlight">results-driven Computer Science Engineering</span> student 
+              I'm a <span className="about-highlight gradient-text">results-driven Computer Science Engineering</span> student 
               specializing in Artificial Intelligence. With hands-on experience in{' '}
               <span className="about-highlight">Python, Java, and Generative AI</span>, I'm passionate about building 
               scalable intelligent systems that solve complex real-world problems.
@@ -53,7 +69,7 @@ const About = () => {
             className="education-timeline"
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             {education.map((edu, i) => (
               <motion.div
@@ -61,15 +77,21 @@ const About = () => {
                 className="education-item"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
+                transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+                whileHover={{ scale: 1.02 }}
               >
-                <div className="education-degree">{edu.degree}</div>
-                <div className="education-school">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem' }}>
+                  <div style={{ padding: '0.5rem', background: 'var(--grad-subtle)', borderRadius: '8px', color: 'var(--violet)' }}>
+                    <HiAcademicCap size={20} />
+                  </div>
+                  <div className="education-degree">{edu.degree}</div>
+                </div>
+                <div className="education-school" style={{ paddingLeft: '2.8rem' }}>
                   {edu.school} • {edu.university}
                 </div>
-                <div className="education-date">{edu.date}</div>
+                <div className="education-date" style={{ paddingLeft: '2.8rem' }}>{edu.date}</div>
                 {edu.coursework && (
-                  <div className="education-coursework">
+                  <div className="education-coursework" style={{ paddingLeft: '2.8rem' }}>
                     <strong>Coursework:</strong> {edu.coursework}
                   </div>
                 )}

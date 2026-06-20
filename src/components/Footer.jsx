@@ -4,9 +4,9 @@ import { FaLinkedinIn, FaGithub } from 'react-icons/fa6';
 import { HiEnvelope, HiArrowUp } from 'react-icons/hi2';
 
 const socialLinks = [
-  { icon: <FaLinkedinIn />, href: 'https://linkedin.com/in/anmolmishra24', label: 'LinkedIn' },
-  { icon: <FaGithub />, href: 'https://github.com/anmol007-max', label: 'GitHub' },
-  { icon: <HiEnvelope />, href: 'mailto:anmolmishran0@gmail.com', label: 'Email' },
+  { icon: <FaLinkedinIn />, href: 'https://linkedin.com/in/anmolmishra24', label: 'LinkedIn', color: '#0077B5' },
+  { icon: <FaGithub />, href: 'https://github.com/anmol007-max', label: 'GitHub', color: '#333' },
+  { icon: <HiEnvelope />, href: 'mailto:anmolmishran0@gmail.com', label: 'Email', color: 'var(--violet)' },
 ];
 
 const Footer = () => {
@@ -14,7 +14,7 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <footer className="footer" ref={ref}>
+    <footer className="footer" ref={ref} style={{ padding: '4rem 0', background: 'var(--grad-subtle)' }}>
       <div className="container">
         <motion.div
           className="footer-socials"
@@ -28,12 +28,19 @@ const Footer = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-link"
+              className="footer-social-link glass-card"
               aria-label={link.label}
-              initial={{ opacity: 0, y: 15 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              whileHover={{ scale: 1.1, y: -3 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: i * 0.1, duration: 0.5, type: 'spring' }}
+              whileHover={{ 
+                scale: 1.15, 
+                y: -5,
+                color: '#fff',
+                backgroundColor: link.color,
+                borderColor: link.color,
+                boxShadow: `0 10px 20px ${link.color}40` 
+              }}
               whileTap={{ scale: 0.95 }}
             >
               {link.icon}
@@ -41,24 +48,30 @@ const Footer = () => {
           ))}
         </motion.div>
 
-        <motion.p
-          className="footer-text"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3, duration: 0.6 }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}
         >
-          © {new Date().getFullYear()} Anmol Mishra. Crafted with passion & code.
-        </motion.p>
+          <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
+            AM<span style={{ color: 'var(--violet)' }}>.</span>
+          </div>
+          <p className="footer-text">
+            © {new Date().getFullYear()} Anmol Mishra. Crafted with passion & code.
+          </p>
+        </motion.div>
 
         <motion.button
           className="footer-back-top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.6 }}
-          whileHover={{ y: -2 }}
+          whileHover={{ y: -4, color: 'var(--orange)' }}
+          style={{ background: 'rgba(255,255,255,0.8)', padding: '0.6rem 1.2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', marginTop: '2rem' }}
         >
-          <HiArrowUp size={14} />
+          <HiArrowUp size={16} />
           Back to top
         </motion.button>
       </div>
