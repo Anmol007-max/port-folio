@@ -50,7 +50,7 @@ const Contact = () => {
   return (
     <section className="section" id="contact" ref={ref} style={{ position: 'relative' }}>
       {/* Decorative background blob */}
-      <div 
+      <div
         style={{
           position: 'absolute',
           top: '10%',
@@ -104,7 +104,7 @@ const Contact = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-                    style={{ 
+                    style={{
                       cursor: item.href ? 'pointer' : 'default',
                       background: 'rgba(255,255,255,0.6)',
                       border: '1px solid rgba(255,255,255,0.8)',
@@ -137,7 +137,7 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Anmol Mishra"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -151,7 +151,7 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="john@example.com"
+                  placeholder="anmolmishran0@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
                   required
