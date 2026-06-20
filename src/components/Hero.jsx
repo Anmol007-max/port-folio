@@ -22,8 +22,8 @@ const floatingShapes = [
 ];
 
 const stats = [
-  { value: '10+', label: 'Projects' },
-  { value: '5+', label: 'Certifications' },
+  { value: '7+', label: 'Projects' },
+  { value: '8+', label: 'Certifications' },
   { value: '3+', label: 'Languages' },
 ];
 
