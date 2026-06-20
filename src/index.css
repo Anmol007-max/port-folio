@@ -84,6 +84,8 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   position: relative;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 /* Dot grid overlay */
@@ -111,14 +113,7 @@ body::before {
 
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-tertiary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--grad-primary);
-  border-radius: var(--radius-full);
+  display: none;
 }
 
 /* ---------- Typography ---------- */
