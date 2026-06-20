@@ -72,7 +72,6 @@ const Contact = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ padding: '4rem' }}
         >
           <div className="contact-grid">
             <div className="contact-info">
@@ -130,7 +129,6 @@ const Contact = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{ background: 'rgba(255,255,255,0.4)', padding: '2.5rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.5)' }}
             >
               <div className="form-group">
                 <label className="form-label" htmlFor="name">Your Name</label>
