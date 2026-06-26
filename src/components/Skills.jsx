@@ -56,7 +56,7 @@ const Skills = () => {
 
   return (
     <section className="section" id="skills" ref={ref} style={{ position: 'relative' }}>
-      {/* Decorative background blob */}
+      {}
       <div 
         style={{
           position: 'absolute',

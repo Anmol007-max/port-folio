@@ -131,7 +131,7 @@ const Hero = () => {
 
   return (
     <section className="hero" id="hero" ref={containerRef} onMouseMove={handleMouseMove}>
-      {/* Animated gradient mesh background */}
+      {}
       <div className="hero-mesh-bg">
         <motion.div
           className="hero-mesh-blob hero-mesh-1"
@@ -162,7 +162,7 @@ const Hero = () => {
         />
       </div>
 
-      {/* Floating geometric shapes */}
+      {}
       {floatingShapes.map((shape, i) => (
         <FloatingShape key={i} {...shape} />
       ))}
@@ -188,7 +188,7 @@ const Hero = () => {
           <AnimatedText text="Mishra" delay={0.7} />
         </h1>
 
-        {/* Animated role cycler */}
+        {}
         <motion.div
           className="hero-role-wrapper"
           initial={{ opacity: 0, y: 20 }}
@@ -208,7 +208,7 @@ const Hero = () => {
           <strong>Python, Java & Generative AI</strong>. Building the future one algorithm at a time.
         </motion.p>
 
-        {/* Stats row */}
+        {}
         <motion.div
           className="hero-stats"
           initial={{ opacity: 0, y: 20 }}
@@ -251,15 +251,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="hero-scroll-indicator"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 0.8 }}
-      >
-        <span>Scroll</span>
-        <span className="scroll-line" />
-      </motion.div>
     </section>
   );
 };

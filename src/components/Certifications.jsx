@@ -10,7 +10,6 @@ const certifications = [
   { name: 'Google Generative AI Studio', issuer: 'Google', year: '2024' },
 ];
 
-// Double the array for seamless infinite scroll
 const marqueeItems = [...certifications, ...certifications, ...certifications];
 
 const Certifications = () => {

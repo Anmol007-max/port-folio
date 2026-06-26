@@ -19,7 +19,7 @@ const About = () => {
 
   return (
     <section className="section" id="about" ref={ref} style={{ position: 'relative' }}>
-      {/* Decorative background blob */}
+      {}
       <div 
         style={{
           position: 'absolute',

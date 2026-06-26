@@ -132,7 +132,6 @@ const CardNav = ({
   const handleLinkClick = (e, href) => {
     if (href && href.startsWith('#')) {
       e.preventDefault();
-      // Close menu first
       toggleMenu();
       const target = document.querySelector(href);
       if (target) {

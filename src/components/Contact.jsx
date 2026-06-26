@@ -49,7 +49,7 @@ const Contact = () => {
 
   return (
     <section className="section" id="contact" ref={ref} style={{ position: 'relative' }}>
-      {/* Decorative background blob */}
+      {}
       <div
         style={{
           position: 'absolute',

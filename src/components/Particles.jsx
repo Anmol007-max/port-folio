@@ -20,7 +20,7 @@ const hexToRgb = hex => {
   return [r, g, b];
 };
 
-const vertex = /* glsl */ `
+const vertex =  `
   attribute vec3 position;
   attribute vec4 random;
   attribute vec3 color;
@@ -61,7 +61,7 @@ const vertex = /* glsl */ `
   }
 `;
 
-const fragment = /* glsl */ `
+const fragment =  `
   precision highp float;
   
   uniform float uTime;
