@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import SectionHeading from './SectionHeading';
+import Tilt3DCard from './Tilt3DCard';
 import { HiAcademicCap } from 'react-icons/hi2';
 
 const education = [
@@ -19,7 +20,7 @@ const About = () => {
 
   return (
     <section className="section" id="about" ref={ref} style={{ position: 'relative' }}>
-      {}
+      {/* Background glow */}
       <div 
         style={{
           position: 'absolute',
@@ -33,16 +34,36 @@ const About = () => {
           pointerEvents: 'none'
         }}
       />
+
+      {/* Floating 3D cube decoration */}
+      <motion.div
+        className="section-deco section-deco-2"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 0.05 } : {}}
+        transition={{ duration: 1, delay: 0.8 }}
+      >
+        <div className="geo-cube" style={{ width: '40px', height: '40px' }}>
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="geo-cube-face" style={{ width: '40px', height: '40px' }} />
+          ))}
+        </div>
+      </motion.div>
       
       <div className="container">
         <SectionHeading number="01" title="About Me" />
 
-        <div className="about-content">
+        <Tilt3DCard
+          className="about-content depth-shadow"
+          tiltMax={3}
+          glare={true}
+          scale={1.005}
+        >
           <motion.div
             className="about-text"
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: -40, rotateY: -5 }}
+            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformStyle: 'preserve-3d' }}
           >
             <p>
               I'm a <span className="about-highlight gradient-text">results-driven Computer Science Engineering</span> student 
@@ -67,18 +88,19 @@ const About = () => {
 
           <motion.div
             className="education-timeline"
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: 40, rotateY: 5 }}
+            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformStyle: 'preserve-3d' }}
           >
             {education.map((edu, i) => (
               <motion.div
                 key={i}
                 className="education-item"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 0, y: 30, rotateX: -8 }}
+                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, x: 4 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem' }}>
                   <div style={{ padding: '0.5rem', background: 'var(--grad-subtle)', borderRadius: '8px', color: 'var(--violet)' }}>
@@ -98,7 +120,7 @@ const About = () => {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </Tilt3DCard>
       </div>
     </section>
   );

@@ -14,13 +14,14 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <footer className="footer" ref={ref} style={{ padding: '4rem 0', background: 'var(--grad-subtle)' }}>
+    <footer className="footer" ref={ref} style={{ padding: '4rem 0', background: 'var(--grad-subtle)', perspective: '600px' }}>
       <div className="container">
         <motion.div
           className="footer-socials"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          style={{ perspective: '500px' }}
         >
           {socialLinks.map((link, i) => (
             <motion.a
@@ -30,18 +31,20 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="footer-social-link glass-card"
               aria-label={link.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5, type: 'spring' }}
+              initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+              animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
+              transition={{ delay: i * 0.12, duration: 0.6, type: 'spring', stiffness: 150 }}
               whileHover={{ 
                 scale: 1.15, 
                 y: -5,
+                rotateY: 10,
                 color: '#fff',
                 backgroundColor: link.color,
                 borderColor: link.color,
-                boxShadow: `0 10px 20px ${link.color}40` 
+                boxShadow: `0 10px 25px ${link.color}40` 
               }}
               whileTap={{ scale: 0.95 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               {link.icon}
             </motion.a>
@@ -68,7 +71,7 @@ const Footer = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.6 }}
-          whileHover={{ y: -4, color: 'var(--orange)' }}
+          whileHover={{ y: -4, color: 'var(--orange)', scale: 1.05 }}
           style={{ background: 'rgba(255,255,255,0.8)', padding: '0.6rem 1.2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', marginTop: '2rem' }}
         >
           <HiArrowUp size={16} />

@@ -1,0 +1,219 @@
+/* ─── Loader Overlay ─── */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* ─── Curtain Panels ─── */
+.loader-curtain-top,
+.loader-curtain-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 2;
+}
+
+.loader-curtain-top {
+  top: 0;
+  background: linear-gradient(180deg, var(--bg-primary) 60%, transparent);
+}
+
+.loader-curtain-bottom {
+  bottom: 0;
+  background: linear-gradient(0deg, var(--bg-primary) 60%, transparent);
+}
+
+/* ─── Floating Orbs ─── */
+.loader-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.loader-orb-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(45, 106, 79, 0.35), transparent 70%);
+  top: -10%;
+  right: -5%;
+}
+
+.loader-orb-2 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(30, 58, 95, 0.3), transparent 70%);
+  bottom: -5%;
+  left: -5%;
+}
+
+.loader-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(196, 89, 58, 0.25), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ─── Content Container ─── */
+.loader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ─── Decorative Lines ─── */
+.loader-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.loader-line {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad-primary);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: loaderLineShimmer 2s ease-in-out infinite;
+}
+
+.loader-line:nth-child(1) { opacity: 0.2; }
+.loader-line:nth-child(2) { opacity: 0.35; }
+.loader-line:nth-child(3) { opacity: 0.5; }
+.loader-line:nth-child(4) { opacity: 0.7; }
+.loader-line:nth-child(5) { opacity: 0.9; }
+
+@keyframes loaderLineShimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.9; }
+}
+
+/* ─── Initials ─── */
+.loader-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+}
+
+.loader-initial {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 12vw, 7rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  position: relative;
+}
+
+.loader-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--grad-accent);
+  animation: loaderDotPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(196, 89, 58, 0.4);
+  flex-shrink: 0;
+}
+
+@keyframes loaderDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(196, 89, 58, 0.4);
+  }
+  50% {
+    transform: scale(1.4);
+    box-shadow: 0 0 35px rgba(196, 89, 58, 0.6);
+  }
+}
+
+/* ─── Tagline ─── */
+.loader-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+/* ─── Progress Bar ─── */
+.loader-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: clamp(200px, 40vw, 300px);
+}
+
+.loader-progress-track {
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(45, 106, 79, 0.1);
+  overflow: hidden;
+}
+
+.loader-progress-bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--grad-primary);
+  transform-origin: left;
+  transform: scaleX(0);
+  position: relative;
+}
+
+.loader-progress-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2d6a4f;
+  box-shadow: 0 0 12px rgba(45, 106, 79, 0.6);
+}
+
+.loader-counter {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .loader-name {
+    gap: 0.5rem;
+  }
+
+  .loader-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
