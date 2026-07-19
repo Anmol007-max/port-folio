@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 
 const MagneticButton = ({ children, className = '', onClick, ...props }) => {
@@ -6,7 +6,7 @@ const MagneticButton = ({ children, className = '', onClick, ...props }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = { stiffness: 300, damping: 20 };
+  const springConfig = { stiffness: 250, damping: 25 };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
@@ -14,8 +14,8 @@ const MagneticButton = ({ children, className = '', onClick, ...props }) => {
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    x.set((e.clientX - centerX) * 0.2);
-    y.set((e.clientY - centerY) * 0.2);
+    x.set((e.clientX - centerX) * 0.15);
+    y.set((e.clientY - centerY) * 0.15);
   };
 
   const handleMouseLeave = () => {
@@ -31,7 +31,7 @@ const MagneticButton = ({ children, className = '', onClick, ...props }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      whileTap={{ scale: 0.96 }}
+      whileTap={{ scale: 0.97 }}
       {...props}
     >
       {children}

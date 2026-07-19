@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { HiSun, HiMoon } from 'react-icons/hi2';
 
 const navItems = [
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
@@ -16,24 +14,6 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const { scrollY } = useScroll();
-
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark' || 
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const prev = scrollY.getPrevious();
@@ -76,11 +56,11 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="navbar-inner">
-          <a href="#" className="nav-logo" onClick={(e) => {
+          <a href="#" className="nav-wordmark" onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}>
-            AM.
+            Anmol Mishra
           </a>
 
           <div className="nav-links">
@@ -92,34 +72,11 @@ const Navbar = () => {
                   href={item.href}
                   className={`nav-link ${isActive ? 'active' : ''}`}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  style={{ position: 'relative' }}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-pill"
-                      className="nav-pill"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                  <span className="nav-link-text">{item.label}</span>
+                  {item.label}
                 </a>
               );
             })}
-            <a
-              href="#contact"
-              className="btn-gradient nav-resume-btn"
-              onClick={(e) => handleNavClick(e, '#contact')}
-            >
-              <span>Let's Talk</span>
-            </a>
-            
-            <button
-              className="theme-toggle"
-              onClick={() => setIsDark(!isDark)}
-              aria-label="Toggle theme"
-            >
-              {isDark ? <HiSun size={20} /> : <HiMoon size={20} />}
-            </button>
           </div>
 
           <button
@@ -154,20 +111,6 @@ const Navbar = () => {
                 {item.label}
               </motion.a>
             ))}
-            
-            <motion.button
-              className="theme-toggle"
-              style={{ marginTop: '1rem', width: '40px', height: '40px', margin: '1rem auto 0' }}
-              onClick={() => {
-                setIsDark(!isDark);
-                setMobileOpen(false);
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-            >
-              {isDark ? <HiSun size={24} /> : <HiMoon size={24} />}
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

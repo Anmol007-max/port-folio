@@ -3,24 +3,19 @@ import { motion } from 'framer-motion';
 
 /**
  * Tilt3DCard — Subtle mouse-tracking 3D perspective tilt.
- * Feels handcrafted and premium, never gimmicky.
- *
- * @param {number} tiltMax - Max tilt angle in degrees (default: 6)
- * @param {boolean} glare  - Whether to show a soft highlight glare
- * @param {number} scale   - Hover scale factor (default: 1.02)
+ * Used on project rows for tactile depth.
+ * No glare overlay — clean editorial feel.
  */
 const Tilt3DCard = ({
   children,
   className = '',
   style = {},
-  tiltMax = 6,
-  glare = false,
-  scale = 1.02,
-  as = 'div',
+  tiltMax = 3,
+  scale = 1.01,
   ...props
 }) => {
   const ref = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0, glareX: 50, glareY: 50 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
@@ -30,10 +25,8 @@ const Tilt3DCard = ({
     const y = (e.clientY - rect.top) / rect.height;
 
     setTilt({
-      x: (y - 0.5) * -tiltMax * 2,  // rotateX
-      y: (x - 0.5) * tiltMax * 2,    // rotateY
-      glareX: x * 100,
-      glareY: y * 100,
+      x: (y - 0.5) * -tiltMax * 2,
+      y: (x - 0.5) * tiltMax * 2,
     });
   };
 
@@ -41,13 +34,11 @@ const Tilt3DCard = ({
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    setTilt({ x: 0, y: 0, glareX: 50, glareY: 50 });
+    setTilt({ x: 0, y: 0 });
   };
 
-  const MotionTag = motion[as] || motion.div;
-
   return (
-    <MotionTag
+    <motion.div
       ref={ref}
       className={`tilt-3d-card ${className}`}
       onMouseMove={handleMouseMove}
@@ -61,7 +52,7 @@ const Tilt3DCard = ({
       transition={{
         type: 'spring',
         stiffness: 200,
-        damping: 20,
+        damping: 25,
         mass: 0.8,
       }}
       style={{
@@ -72,16 +63,7 @@ const Tilt3DCard = ({
       {...props}
     >
       {children}
-      {glare && (
-        <div
-          className="tilt-glare"
-          style={{
-            opacity: isHovered ? 0.12 : 0,
-            background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.5), transparent 60%)`,
-          }}
-        />
-      )}
-    </MotionTag>
+    </motion.div>
   );
 };
 

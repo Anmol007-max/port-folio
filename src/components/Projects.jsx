@@ -1,12 +1,10 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { HiArrowUpRight, HiLink, HiFolder } from 'react-icons/hi2';
 import SectionHeading from './SectionHeading';
 import Tilt3DCard from './Tilt3DCard';
 
 const projects = [
   {
-    number: '01',
     title: 'Algorythm',
     year: '2026',
     tech: ['React 18', 'Vite', 'Tailwind CSS', 'D3.js', 'Framer Motion', 'Zustand', 'Express.js'],
@@ -19,7 +17,6 @@ const projects = [
     githubUrl: 'https://github.com/anmol007-max/Algorythm',
   },
   {
-    number: '02',
     title: 'MINDBOT',
     year: '2025',
     tech: ['Python', 'NLP', 'Emotion Detection', 'Generative AI'],
@@ -31,7 +28,6 @@ const projects = [
     githubUrl: 'https://github.com/Anmol007-max/Ai-Based-Mental-Health-Chatbot-With-Emotion-Detection',
   },
   {
-    number: '03',
     title: 'Token Optimizer',
     year: '2026',
     tech: ['Java', 'Regex', 'Prompt Engineering', 'LLM Tokenization'],
@@ -44,138 +40,66 @@ const projects = [
   },
 ];
 
-const projectVariants = {
-  hidden: { opacity: 0, y: 50, rotateX: -5 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: {
-      duration: 0.8,
-      delay: i * 0.18,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  }),
-};
-
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="section" id="projects" ref={ref} style={{ position: 'relative' }}>
-      {/* Background glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '30%',
-          left: '0',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(196,89,58,0.03), transparent 70%)',
-          borderRadius: '50%',
-          filter: 'blur(80px)',
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Floating 3D ring decoration */}
-      <motion.div
-        className="section-deco section-deco-3"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.05 } : {}}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        <div className="geo-ring" />
-      </motion.div>
-
+    <section className="section" id="projects" ref={ref}>
       <div className="container">
-        <SectionHeading number="03" title="Featured Projects" />
+        <SectionHeading label="03 — Work" title="Featured Projects" />
 
-        <div className="projects-grid" style={{ perspective: '1000px' }}>
+        <div className="projects-list">
           {projects.map((project, i) => (
-            <Tilt3DCard
-              key={project.title}
-              className="project-card glass-card depth-shadow"
-              tiltMax={4}
-              glare={true}
-              scale={1.01}
-            >
+            <Tilt3DCard key={project.title} tiltMax={2} scale={1.005}>
               <motion.div
-                custom={i}
-                variants={projectVariants}
-                initial="hidden"
-                animate={isInView ? 'visible' : 'hidden'}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'auto 1fr',
-                  gap: '2rem',
-                  transformStyle: 'preserve-3d',
+                className="project-row"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.15 + i * 0.15,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
               >
-                <div className="project-number depth-pop">
-                  <HiFolder style={{ opacity: 0.5, marginRight: '1rem', color: 'var(--violet)' }} />
-                  {project.number}
+                <div className="project-header">
+                  <h3 className="project-title">{project.title}</h3>
+                  <span className="project-year">{project.year}</span>
                 </div>
 
-                <div className="project-content">
-                  <div className="project-header">
-                    <h3 className="project-title depth-pop-sm">{project.title}</h3>
-                    <span className="project-year">{project.year}</span>
-                  </div>
+                <div className="project-tech">
+                  {project.tech.map((t) => (
+                    <span key={t} className="mono-tag">{t}</span>
+                  ))}
+                </div>
 
-                  <div className="project-tech">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="skill-pill"
-                        style={{ padding: '0.2rem 0.6rem', fontSize: '0.75rem' }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                <ul className="project-description">
+                  {project.description.map((desc, j) => (
+                    <li key={j}>{desc}</li>
+                  ))}
+                </ul>
 
-                  <ul className="project-description">
-                    {project.description.map((desc, j) => (
-                      <motion.li
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.4 + i * 0.15 + j * 0.08, duration: 0.5 }}
-                      >
-                        {desc}
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <div className="project-links">
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link"
-                        whileHover={{ y: -2 }}
-                      >
-                        <HiLink size={18} />
-                        Live Demo
-                        <HiArrowUpRight size={14} />
-                      </motion.a>
-                    )}
-                    {project.githubUrl && project.githubUrl !== '#' && (
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link"
-                        whileHover={{ y: -2 }}
-                      >
-                        GitHub
-                        <HiArrowUpRight size={14} />
-                      </motion.a>
-                    )}
-                  </div>
+                <div className="project-links">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                    >
+                      Live Demo →
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                    >
+                      GitHub →
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </Tilt3DCard>
