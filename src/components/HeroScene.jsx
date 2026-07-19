@@ -1,6 +1,6 @@
 import { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { ContactShadows, Float, Environment } from '@react-three/drei';
+import { ContactShadows, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 /**
