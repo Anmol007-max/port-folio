@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import SectionHeading from './SectionHeading';
-import Tilt3DCard from './Tilt3DCard';
 
 const projects = [
   {
@@ -40,6 +39,72 @@ const projects = [
   },
 ];
 
+const ProjectCard = ({ project, index, isInView }) => {
+  const ref = useRef(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setTilt({ x: (y - 0.5) * -4, y: (x - 0.5) * 4 });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      className="tilt-3d-card"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      animate={{ rotateX: tilt.x, rotateY: tilt.y, scale: isHovered ? 1.005 : 1 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 25, mass: 0.8 }}
+      style={{ transformStyle: 'preserve-3d', perspective: '800px' }}
+    >
+      <motion.div
+        className="project-row"
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.15 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="project-header">
+          <h3 className="project-title">{project.title}</h3>
+          <span className="project-year">{project.year}</span>
+        </div>
+        <div className="project-tech">
+          {project.tech.map((t) => (
+            <span key={t} className="mono-tag">{t}</span>
+          ))}
+        </div>
+        <ul className="project-description">
+          {project.description.map((desc, j) => (
+            <li key={j}>{desc}</li>
+          ))}
+        </ul>
+        <div className="project-links">
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+              Live Demo →
+            </a>
+          )}
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+              GitHub →
+            </a>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -48,61 +113,9 @@ const Projects = () => {
     <section className="section" id="projects" ref={ref}>
       <div className="container">
         <SectionHeading label="03 — Work" title="Featured Projects" />
-
         <div className="projects-list">
           {projects.map((project, i) => (
-            <Tilt3DCard key={project.title} tiltMax={2} scale={1.005}>
-              <motion.div
-                className="project-row"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.15 + i * 0.15,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <span className="project-year">{project.year}</span>
-                </div>
-
-                <div className="project-tech">
-                  {project.tech.map((t) => (
-                    <span key={t} className="mono-tag">{t}</span>
-                  ))}
-                </div>
-
-                <ul className="project-description">
-                  {project.description.map((desc, j) => (
-                    <li key={j}>{desc}</li>
-                  ))}
-                </ul>
-
-                <div className="project-links">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      Live Demo →
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      GitHub →
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            </Tilt3DCard>
+            <ProjectCard key={project.title} project={project} index={i} isInView={isInView} />
           ))}
         </div>
       </div>

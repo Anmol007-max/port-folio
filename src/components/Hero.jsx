@@ -1,8 +1,23 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import AnimatedText from './AnimatedText';
 import MagneticButton from './MagneticButton';
 import HeroScene from './HeroScene';
+
+const StaggerText = ({ text, delay }) => (
+  <span aria-label={text}>
+    {text.split('').map((char, i) => (
+      <motion.span
+        key={i}
+        style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 12, delay: delay + i * 0.035 }}
+      >
+        {char}
+      </motion.span>
+    ))}
+  </span>
+);
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -14,9 +29,9 @@ const Hero = () => {
       <motion.div className="hero-grid" style={{ opacity: heroOpacity }}>
         <div className="hero-text">
           <h1 className="hero-name">
-            <AnimatedText text="Anmol" delay={0.3} />
+            <StaggerText text="Anmol" delay={0.3} />
             <br />
-            <AnimatedText text="Mishra" delay={0.6} />
+            <StaggerText text="Mishra" delay={0.6} />
           </h1>
 
           <motion.p

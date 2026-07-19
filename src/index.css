@@ -1,12 +1,7 @@
-/* ══════════════════════════════════════════════════
-   PORTFOLIO — EDITORIAL DESIGN SYSTEM
-   Instrument Serif · IBM Plex Sans · IBM Plex Mono
-   Accent: Pine Green #2F4A3C
-   ══════════════════════════════════════════════════ */
-
-/* ─── Design Tokens ─── */
+/* Global design tokens and layout styles for the portfolio. 
+   Uses a warm paper-like color palette with a pine green accent. */
 :root {
-  /* Palette — warm paper + ink + one accent */
+  
   --bg-primary: #F7F4EE;
   --bg-secondary: #EFEBE2;
   --bg-tertiary: #E8E3D9;
@@ -18,17 +13,17 @@
   --border: #D8D3C7;
   --border-light: #E5E1D8;
 
-  /* Typography */
+  
   --font-display: 'Instrument Serif', serif;
   --font-body: 'IBM Plex Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
-  /* Spacing */
+  
   --section-pad: clamp(5rem, 12vh, 9rem);
   --container-max: 1100px;
   --container-pad: clamp(1.5rem, 4vw, 3rem);
 
-  /* Shadows — layered paper depth */
+  
   --shadow-card:
     0 1px 2px rgba(27, 27, 24, 0.04),
     0 2px 4px rgba(27, 27, 24, 0.03),
@@ -46,13 +41,13 @@
     0 5px 0 var(--border-light),
     0 8px 16px rgba(27, 27, 24, 0.04);
 
-  /* Easing */
+  
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 
-/* ─── Reset ─── */
+
 *,
 *::before,
 *::after {
@@ -91,11 +86,11 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 
-/* ─── Typography Base ─── */
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   line-height: 1.1;
-  font-weight: 400; /* Instrument Serif only has 400 */
+  font-weight: 400; 
   color: var(--text-primary);
 }
 
@@ -119,7 +114,7 @@ button {
 }
 
 
-/* ─── Layout ─── */
+
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -132,7 +127,7 @@ button {
 }
 
 
-/* ─── Section Heading — editorial style ─── */
+
 .section-heading {
   margin-bottom: 3.5rem;
 }
@@ -163,7 +158,7 @@ button {
 }
 
 
-/* ─── Buttons — bordered, editorial ─── */
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -206,7 +201,7 @@ button {
 }
 
 
-/* ─── Mono Tag — for tech stack, dates ─── */
+
 .mono-tag {
   display: inline-block;
   padding: 0.25rem 0.6rem;
@@ -219,7 +214,7 @@ button {
 }
 
 
-/* ─── Accent link ─── */
+
 .accent-link {
   color: var(--accent);
   font-weight: 500;
@@ -234,9 +229,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   NAVBAR
-   ══════════════════════════════════════════════════ */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -358,9 +351,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   HERO
-   ══════════════════════════════════════════════════ */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -387,10 +378,11 @@ button {
 }
 
 .hero-name {
-  font-family: var(--font-display);
+  
+  font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
   font-size: clamp(3.5rem, 7vw, 6.5rem);
   font-weight: 400;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 0.95;
   margin-bottom: 1.25rem;
   color: var(--text-primary);
@@ -470,9 +462,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   ABOUT
-   ══════════════════════════════════════════════════ */
+
 .about-column {
   max-width: 65ch;
 }
@@ -546,9 +536,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   SKILLS
-   ══════════════════════════════════════════════════ */
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -566,7 +554,7 @@ button {
   border-right: none;
 }
 
-/* Last row - remove bottom border */
+
 .skill-category:nth-last-child(-n+3):nth-child(3n+1),
 .skill-category:nth-last-child(-n+3):nth-child(3n+1) ~ .skill-category {
   border-bottom: none;
@@ -596,9 +584,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   PROJECTS
-   ══════════════════════════════════════════════════ */
+
 .projects-list {
   display: flex;
   flex-direction: column;
@@ -685,9 +671,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   CERTIFICATIONS
-   ══════════════════════════════════════════════════ */
+
 .cert-list {
   display: flex;
   flex-direction: column;
@@ -731,9 +715,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   CONTACT
-   ══════════════════════════════════════════════════ */
+
 .contact-section {
   text-align: left;
 }
@@ -810,9 +792,7 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════ */
+
 .footer {
   padding: 3rem 0;
   border-top: 1px solid var(--border);
@@ -872,125 +852,17 @@ button {
 }
 
 
-/* ══════════════════════════════════════════════════
-   LOADER
-   ══════════════════════════════════════════════════ */
-.loader-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-primary);
-}
-
-.loader-curtain-top,
-.loader-curtain-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: var(--bg-primary);
-  z-index: 2;
-}
-
-.loader-curtain-top { top: 0; }
-.loader-curtain-bottom { bottom: 0; }
-
-.loader-content {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.loader-name {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  letter-spacing: -0.03em;
-}
-
-.loader-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin: 0 0.15rem;
-}
-
-.loader-tagline {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.loader-progress-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.loader-progress-track {
-  width: 120px;
-  height: 1px;
-  background: var(--border);
-  overflow: hidden;
-}
-
-.loader-progress-bar {
-  height: 100%;
-  background: var(--accent);
-  transform-origin: left center;
-  transform: scaleX(0);
-}
-
-.loader-counter {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  min-width: 2.5rem;
-  text-align: right;
-}
-
-.loader-lines {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 1rem;
-}
-
-.loader-line {
-  height: 1px;
-  background: var(--border);
-  transform-origin: center;
-}
 
 
-/* ══════════════════════════════════════════════════
-   TILT CARD (used on project rows)
-   ══════════════════════════════════════════════════ */
+
+
 .tilt-3d-card {
   position: relative;
   transform-style: preserve-3d;
 }
 
 
-/* ══════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════ */
+
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
