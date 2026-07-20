@@ -509,30 +509,42 @@ button {
   margin-bottom: 1rem;
 }
 
-.education-degree {
+.education-college {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  margin-bottom: 0.35rem;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.5vw, 2.125rem);
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0 0 1.1rem;
 }
 
-.education-school {
-  font-size: 0.95rem;
+.education-story {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--text-secondary);
-  margin-bottom: 0.25rem;
+  margin: 0 0 1.4rem;
+  max-width: 60ch;
 }
 
-.education-date {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
+.education-accent {
   color: var(--accent);
+  font-weight: 500;
 }
 
-.education-coursework {
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+.education-tags {
+  display: flex;
+  gap: 0.9rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.education-sub {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin-top: 1.4rem;
+  max-width: 60ch;
 }
 
 

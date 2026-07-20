@@ -2,15 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import SectionHeading from './SectionHeading';
 
-const education = [
-  {
-    degree: 'B.Tech — Computer Science Engineering (AI)',
-    school: 'Galgotias College of Engineering and Technology',
-    university: 'AKTU',
-    date: 'Sep 2024 — Jun 2028',
-    coursework: 'Data Structures & Algorithms, Machine Learning, Neural Networks, OOP, DBMS, Operating Systems',
-  },
-];
+
 
 const About = () => {
   const ref = useRef(null);
@@ -60,18 +52,25 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="education-label">Education</div>
-            {education.map((edu, i) => (
-              <div key={i}>
-                <div className="education-degree">{edu.degree}</div>
-                <div className="education-school">{edu.school} · {edu.university}</div>
-                <div className="education-date">{edu.date}</div>
-                {edu.coursework && (
-                  <div className="education-coursework">
-                    <strong>Coursework:</strong> {edu.coursework}
-                  </div>
-                )}
-              </div>
-            ))}
+            
+            <h3 className="education-college">Galgotias College of Engineering and Technology</h3>
+            
+            <p className="education-story">
+              Currently in my third year, working through a <span className="education-accent">B.Tech in Computer Science with a focus on AI</span> —
+              the kind of coursework that's become the backbone for everything I've since built
+              outside the classroom.
+            </p>
+
+            <div className="education-tags">
+              <span className="mono-tag">AKTU</span>
+              <span className="mono-tag">SEP 2024 — JUN 2028</span>
+            </div>
+
+            <p className="education-sub">
+              Data structures, machine learning, and neural networks made up most of the early
+              coursework — OOP and DBMS came alongside, and it's that mix that ended up shaping
+              the projects below.
+            </p>
           </motion.div>
         </div>
       </div>
