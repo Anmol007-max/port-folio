@@ -41,6 +41,24 @@ const Certifications = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="cert-closing"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="cert-closing-text">
+            Full resume available on request
+          </span>
+          <a
+            href={import.meta.env.BASE_URL + 'resume.pdf'}
+            download="Anmol_Mishra_Resume.pdf"
+            className="cert-closing-link"
+          >
+            Download Resume <span>↓</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

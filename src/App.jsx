@@ -8,6 +8,8 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
+import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +28,8 @@ function App() {
   return (
     <>
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      <CustomCursor />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
