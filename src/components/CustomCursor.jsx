@@ -14,12 +14,12 @@ const CustomCursor = () => {
   const isPointerFine = typeof window !== 'undefined'
     && window.matchMedia('(pointer: fine)').matches;
 
-  const render = useCallback(() => {
+  const render = useCallback(function renderFrame() {
     if (cursorRef.current) {
       cursorRef.current.style.transform =
         `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`;
     }
-    raf.current = requestAnimationFrame(render);
+    raf.current = requestAnimationFrame(renderFrame);
   }, []);
 
   useEffect(() => {

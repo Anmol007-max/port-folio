@@ -7,32 +7,27 @@ const skillCategories = [
   {
     title: 'Languages',
     icon: <HiCodeBracket />,
-    skills: ['Python', 'Java', 'C++'],
+    skills: ['Python', 'Java'],
   },
   {
     title: 'AI / ML',
     icon: <HiCpuChip />,
-    skills: ['Generative AI', 'Prompt Engineering', 'LLMs', 'NLP', 'Emotion Detection', 'Google Gen AI Studio'],
+    skills: ['NLP', 'LLMs', 'Prompt Engineering', 'Emotion Detection'],
   },
   {
-    title: 'Web & Frameworks',
+    title: 'Backend',
     icon: <HiGlobeAlt />,
-    skills: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Express.js', 'FastAPI'],
-  },
-  {
-    title: 'Tools & Libraries',
-    icon: <HiWrenchScrewdriver />,
-    skills: ['D3.js', 'Zustand', 'Monaco Editor'],
-  },
-  {
-    title: 'Dev Environment',
-    icon: <HiCodeBracket />,
-    skills: ['Git', 'GitHub', 'VS Code', 'IntelliJ IDEA', 'Unix'],
+    skills: ['Spring Boot', 'Spring Framework'],
   },
   {
     title: 'CS Fundamentals',
     icon: <HiAcademicCap />,
-    skills: ['Data Structures', 'Algorithms', 'OOP', 'System Design', 'DBMS', 'Tokenization'],
+    skills: ['Data Structures', 'Algorithms', 'OOP'],
+  },
+  {
+    title: 'Dev Environment',
+    icon: <HiCodeBracket />,
+    skills: ['Git', 'GitHub', 'VS Code', 'IntelliJ IDEA'],
   },
 ];
 
